@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameBoundaries : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Action<Collision2D> OnCollision;
     void Start()
     {
         
@@ -14,5 +15,11 @@ public class GameBoundaries : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (OnCollision != null)
+            OnCollision.Invoke(col);
     }
 }
